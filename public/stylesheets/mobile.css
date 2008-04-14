@@ -1,0 +1,9 @@
+a { color: #b00; }
+a:hover { background-color: #b00; color: #eee; }
+
+#menu ul {
+	background-color: #fcc;
+	border-top: 1px solid #666;
+	list-style: none;
+	padding: 0px;
+}

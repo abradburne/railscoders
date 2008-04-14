@@ -1,0 +1,14 @@
+valid_page:
+  id: 1
+  title: Welcome Page
+  permalink: welcome-page
+  body: Welcome to RailsCoders
+invalid_page_short_title:
+  id: 2
+  title: a
+  permalink: a
+  body: The title is shorter than 3 character
+valid_with_auto_permalink:
+  id: 3
+  title: Another Page, but without a permalink
+  body: No permalink is given so should be automatically generated

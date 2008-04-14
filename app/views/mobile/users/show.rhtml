@@ -1,0 +1,22 @@
+<h2><%= @user.username %></h2>
+<p><%=h @user.profile %></p>
+
+<h3>Blog Entries</h3>
+<ul id="entries">
+<% @entries.each do |entry| %>
+  <li><%= link_to entry.title, mobile_entry_path(:user_id => @user, :id => entry) %>
+<% end %>
+</ul>
+<p><%= link_to "See all of #{@user.username}'s blog", mobile_entries_path(:user_id => @user) %></p>
+
+<h3>Photos</h3>
+<ul id="photos">
+<% @photos.each do |photo| -%>
+  <li id="photo-<%= photo.id %>">
+    <%= link_to image_tag(photo.public_filename('tiny')), 
+                mobile_user_photo_path(:user_id => photo.user, :id => photo) %>
+  </li>
+<% end %>
+</ul>
+
+<p><%= link_to "See all of #{@user.username}'s photos", mobile_user_photos_path(:user_id => @user) %></p>

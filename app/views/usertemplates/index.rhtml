@@ -1,0 +1,17 @@
+<h1>Your Blog Templates</h1>
+<table>
+  <tr>
+    <th>Template Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><%= link_to 'blog_index', edit_usertemplate_path(
+              @usertemplates.find {|ut| ut.name == 'blog_index'} ) -%></td>
+    <td>The main template for your blog</td>
+  </tr>
+  <tr>
+    <td><%= link_to 'blog_entry', edit_usertemplate_path(
+              @usertemplates.find {|ut| ut.name == 'blog_entry'} ) -%></td>
+    <td>The template for viewing one entry</td>
+  </tr>
+</table>

@@ -1,0 +1,9 @@
+<h2>All Photos</h2>
+
+<%= render :partial => 'page_links' %>
+
+<ul id="photos">
+  <%= render :partial => 'photo', :collection => @photos %>
+</ul>
+
+<%= render :partial => 'page_links' %>

@@ -1,0 +1,8 @@
+<h2>Edit a Category</h2>
+<%= error_messages_for :category %>
+<% form_for(:category, 
+            :url => category_path(@category), 
+            :html => {:method => :put}) do |f| -%>
+  <p>Name:<br /><%= f.text_field :name, :size => 60 %></p>
+  <%= submit_tag 'Save' %> or <%= link_to 'cancel', admin_categories_url %>
+<% end %>

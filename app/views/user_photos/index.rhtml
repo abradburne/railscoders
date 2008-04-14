@@ -1,0 +1,13 @@
+<h2><%= @user.username %>'s Photos</h2>
+
+<% if is_logged_in? && logged_in_user == @user %>
+  <p><%= link_to 'Upload a new photo', user_new_photo_path() %></p>
+<% end %>
+
+<%= render :partial => 'photos/page_links' %>
+
+<ul id="photos">
+  <%= render :partial => 'photos/photo', :collection => @photos %>
+</ul>
+
+<%= render :partial => 'photos/page_links' %>

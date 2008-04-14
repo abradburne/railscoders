@@ -1,0 +1,15 @@
+<tr class="<%= cycle('odd', 'even') %>">
+  <td id="friendname">
+    <%= link_to friendship.friend.username,
+                user_path(friendship.friend),
+                :class => 'xfnRelationship',
+                :rel => xfn_rel_tag(@user, friendship),
+                :id => "friend-#{friendship.friend.id}" %>
+  </td>
+  <td id="activity">
+    <% if friendship.friend.last_activity_at %>
+      <%= friendship.friend.last_activity %>
+      <%= time_ago_in_words(friendship.friend.last_activity_at) %> ago
+    <% end %>
+  </td>
+</tr>

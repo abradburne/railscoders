@@ -1,0 +1,22 @@
+good_news:
+  id: 1
+  user_id: 1
+  title: Exciting news
+  synopsis: New Feature.
+  body: We have added a new features for you to enjoy.
+  published: true
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  published_at: <%= Time.now.to_s :db %>
+  category_id: 1
+some_gossip:
+  id: 2
+  user_id: 1
+  title: Rails Updated
+  synopsis: A new update to Rails was released
+  body: Time to update, folks!
+  published: true
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  published_at: <%= Time.now.to_s :db %>
+  category_id: 2

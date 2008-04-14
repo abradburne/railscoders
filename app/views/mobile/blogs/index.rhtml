@@ -1,0 +1,14 @@
+<h2>Recently updated blogs</h2>
+
+<% @entries.each do |entry| %>
+  <p>
+    <%= link_to entry.user.username, mobile_entries_url(:user_id => entry.user) %><br />
+    '<%= entry.title %>' was posted <%= time_ago_in_words(entry.created_at) %> ago
+  </p>
+<% end %>
+
+<% if @entry_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @entry_pages, :params => params %>
+  </strong></p>
+<% end %>

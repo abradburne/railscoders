@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.0//EN"
+  "http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd">
+<html>
+  <head>
+    <title>RailsCoders</title>
+    <%= stylesheet_link_tag 'mobile' %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1>RailsCoders</h1>
+      </div>
+      <div id="content">
+        <% if flash[:notice] -%>
+          <div id="notice"><%= flash[:notice] %></div>
+        <% end -%>
+        <% if flash[:error] -%>
+          <div id="error"><%= flash[:error] %></div>
+        <% end -%>
+        <%= yield %>
+      </div>
+      <div id="menu">
+        <%= render :partial => 'layouts/mobilemenu' %>
+      </div>
+    </div>
+  </body>
+</html>

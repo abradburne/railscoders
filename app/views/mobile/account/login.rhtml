@@ -1,0 +1,7 @@
+<h2>Login</h2>
+
+<% form_for :user, :url => {:action => 'authenticate'} do |f| -%>
+  <p>Username:<%= f.text_field :username %></p>
+  <p>Password:<%= f.password_field :password %></p>
+  <%= submit_tag 'Login' %>
+<% end %>

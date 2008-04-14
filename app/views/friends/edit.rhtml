@@ -1,0 +1,68 @@
+<h2>Edit a friend</h2>
+
+<%= error_messages_for :friendship %>
+
+<% form_for(:friendship,
+            :url => friend_path(:user_id => @logged_in_user,
+            :friend_id => @friend),
+            :html => { :multipart => true, :method => :put }) do |f| %>
+
+  <p>
+    Define your relationship with <strong><%= @friend.username %></strong>
+  </p>
+
+  <p>
+    <strong>Friendship</strong><br />
+    <%= f.radio_button :xfn_friendship, :xfn_contact %> Contact
+    <%= f.radio_button :xfn_friendship, :xfn_acquaintance %> Acquaintance
+    <%= f.radio_button :xfn_friendship, :xfn_friend %> Friend
+    <%= f.radio_button :xfn_friendship, false %> None
+  </p>
+
+  <p>
+    <strong>Physical</strong><br />
+    <%= f.check_box :xfn_met %> Met
+  </p>
+
+  <p>
+    <strong>Professional</strong><br />
+    <%= f.check_box :xfn_coworker %> Co-worker
+    <%= f.check_box :xfn_colleague %> Colleague
+  </p>
+
+  <p>
+    <strong>Geographical</strong><br />
+    <%= f.radio_button :xfn_geographical, :xfn_coresident %> Co-resident
+    <%= f.radio_button :xfn_geographical, :xfn_neighbor %> Neighbor
+    <%= f.radio_button :xfn_geographical, false %> None
+  </p>
+  
+  <p>
+    <strong>Family</strong><br />
+    <%= f.radio_button :xfn_family, :xfn_child %> Child
+    <%= f.radio_button :xfn_family, :xfn_parent %> Parent
+    <%= f.radio_button :xfn_family, :xfn_sibling %> Sibling
+    <%= f.radio_button :xfn_family, :xfn_spouse %> Spouse
+    <%= f.radio_button :xfn_family, :xfn_kin %> Kin
+    <%= f.radio_button :xfn_family, false %> None
+  </p>
+
+  <p>
+    <strong>Romantic</strong><br />
+    <%= f.check_box :xfn_muse %> Muse
+    <%= f.check_box :xfn_crush %> Crush
+    <%= f.check_box :xfn_date %> Date
+    <%= f.check_box :xfn_sweetheart %> Sweetheart
+  </p>
+
+  <p>
+    <%= submit_tag 'Save' %> or <%= link_to 'cancel', user_path(@friend) %>
+  </p>
+
+  <p>
+  <%= link_to 'Delete this friendship',
+              friend_path(:user_id => @logged_in_user, :id => @friend),
+                          :method => :delete %>
+  </p>
+
+<% end %>

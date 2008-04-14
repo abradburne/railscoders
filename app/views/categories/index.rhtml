@@ -1,0 +1,8 @@
+<h2>Categories</h2>
+<ul>
+<% @categories.each do |category| %>
+  <li>
+    <%= link_to category.name, category_articles_url(:category_id => category) %>
+  </li>
+<% end %>
+</ul>

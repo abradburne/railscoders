@@ -1,0 +1,35 @@
+<h1>
+  <%= link_to blog_title(@entry.user), entries_path(:user_id => @entry.user) %>
+</h1>
+
+<h2><%= @entry.title %></h2>
+
+<p><%= textilize(@entry.body) %></p>
+
+<h3>Comments</h3>
+<% @entry.comments.each do |comment| -%>
+  <div class="comment">
+    <p class="commentfrom">At <%= comment.created_at.to_s(:short) %>, 
+      <%= comment.user.username %> said:</p>
+    <% if is_logged_in? and logged_in_user.id == @entry.user.id -%>
+      <p class="commentdelete">
+        <%= link_to 'Delete this comment', 
+              comment_path(
+                :user_id => @entry.user, 
+                :entry_id => @entry.id, 
+                :id => comment.id), 
+              :confirm => 'Are you sure?', 
+              :method => :delete -%>
+      </p>
+    <% end -%>
+    <p class="commentbody"><%=h comment.body %></p>
+  </div>
+<% end -%>
+
+<h3>Leave a comment</h3>
+<%= error_messages_for :comment %>
+<% form_for(:comment, :url => comments_path(:user_id => @entry.user, 
+            :entry_id => @entry)) do |f| -%>
+  <p><%= f.text_area :body, :rows => 4, :cols => 40 %></p>
+  <p><%= submit_tag 'Save Comment' -%></p>
+<% end -%>

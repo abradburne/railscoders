@@ -1,0 +1,22 @@
+<h2>Create New Newsletter</h2>
+
+<%= error_messages_for :newsletter %>
+
+<% form_for(:newsletter, :url => newsletters_path) do |f| %>
+  <p>
+    <b>Subject</b><br />
+    <%= f.text_field :subject, :size => 70 %>
+  </p>
+
+  <p>
+    <b>Body</b><br />
+    <%= f.text_area :body, :cols => 70, :rows => 25 %>
+    <br />
+    You can access the user model with @user. <br >
+    e.g. &lt;%= @user.username %&gt; or &lt;%= @user.email %&gt;
+  </p>
+
+  <p>
+    <%= submit_tag "Save draft" %> or <%= link_to 'Cancel', newsletters_path %>
+  </p>
+<% end %>

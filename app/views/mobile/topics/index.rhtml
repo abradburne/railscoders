@@ -1,0 +1,30 @@
+<h2>Forum : <%= @forum.name -%></h2>
+
+<h3>Topics</h3>
+
+<p>
+<% if is_logged_in? -%>
+  <%= link_to 'Post New Topic', mobile_new_topic_path(:forum_id => @forum) -%>
+<% else -%>
+  <%= link_to 'Login to post a new topic', login_url -%>
+<% end -%>
+</p>
+
+<% if @topics_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @topics_pages, :params => params %>
+  </strong></p>
+<% end %>
+
+<ul>
+<% @topics.each do |topic| -%>
+  <li><%= link_to topic.name, mobile_posts_path(:forum_id => @forum, :topic_id => topic) -%>
+  (<%= pluralize(topic.posts_count, 'post') -%>)</li>
+<% end -%>
+</ul>
+
+<% if @topics_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @topics_pages, :params => params %>
+  </strong></p>
+<% end %>

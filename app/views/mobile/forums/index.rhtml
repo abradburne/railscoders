@@ -1,0 +1,10 @@
+<h2>Forums</h2>
+
+<% @forums.each do |forum| -%>
+  <div class="forumname">
+    <%= link_to forum.name, mobile_topics_path(:forum_id => forum) -%>
+  </div>
+  <div class="forumdescription">
+    <%= forum.description -%>
+  </div>
+<% end -%>

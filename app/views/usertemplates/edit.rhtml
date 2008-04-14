@@ -1,0 +1,12 @@
+<h2>Editing <%= @usertemplate.name %></h2>
+
+<%= error_messages_for :usertemplate %>
+
+<% form_for(:usertemplate,
+            :url => usertemplate_path(@usertemplate),
+            :html => { :method => :put }) do |f| %>
+  <p><%= f.text_area :body, :rows => 25, :cols => 80 %>
+  <p>
+    <%= submit_tag "Save" %> or <%= link_to 'cancel', usertemplates_path %>
+  </p>
+<% end %>

@@ -1,0 +1,31 @@
+<h1><%= link_to blog_title(@user), entries_path(:user_id => @user.id) %></h1>
+  
+<% @entries.each do |entry| -%>
+  <div class="blogentry">
+    <h2><%= link_to entry.title, 
+                    entry_path(:user_id => entry.user, :id => entry) %></h2>
+
+    <% if is_logged_in? and logged_in_user.id == @user.id -%>
+      <div clas="blogoptions">
+        <%= link_to 'Edit', edit_entry_path(:user_id => entry.user, :id => entry) %>
+        <%= link_to 'Destroy', entry_path(:user_id => entry.user, :id => entry), 
+                               :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    <% end -%>
+
+    <div class="blogentrybody">
+      <%= textilize(entry.body) %>
+    </div>
+
+    <div class="blognumcomments">
+      <p><%= link_to pluralize(entry.comments_count, 'comment'), 
+                     entry_path(:user_id => entry.user, :id => entry) -%></p>
+    </div>
+  </div>
+<% end -%>
+
+<% if @entry_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @entry_pages, :params => params %>
+  </strong></p>
+<% end %>

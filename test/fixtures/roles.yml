@@ -1,0 +1,9 @@
+admin:
+  id: 1
+  name: Administrator
+editor:
+  id: 2
+  name: Editor
+moderator:
+  id: 3
+  name: Moderator

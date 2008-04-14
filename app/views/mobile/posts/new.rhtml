@@ -1,0 +1,11 @@
+<h2>New Post</h2>
+
+<%= error_messages_for :post -%>
+
+<h3>Topic: <%= @topic.name %></h3>
+<% form_for :post, 
+            :url => mobile_posts_path(:topic_id => @topic, :forum_id => @topic.forum) do |f| -%>
+  <p>Message:<br /><%= f.text_area :body, :rows => 8, :cols => 60 -%></p>
+  <%= submit_tag 'Save' -%> or 
+  <%= link_to 'Cancel', mobile_topics_path(:id => @topic, :forum_id => @topic.forum) -%>
+<% end -%>

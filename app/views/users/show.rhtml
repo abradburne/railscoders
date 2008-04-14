@@ -1,0 +1,58 @@
+<h2>User: <%= @user.username %></h2>
+
+<p>Member since <%= @user.created_at.to_s(:long) %></p>
+<p><%= @user.profile %></p>
+
+<h3>Blog Entries</h3>
+<ul id="entries">
+  <% for entry in @entries %>
+    <li>
+      <%= link_to entry.title, 
+                  entry_path(:user_id => @user, :id => entry) %>
+    </li>
+  <% end %>
+</ul>
+<p>
+  <%= link_to "See all of #{@user.username}'s blog", 
+              entries_path(:user_id => @user) %>
+</p>
+
+<h3>Photos</h3>
+<ul id="photos">
+  <%= render :partial => 'photos/photo', :collection => @photos %>
+</ul>
+<p>
+  <% if is_logged_in? and @user.id != logged_in_user.id %>
+    <% if logged_in_user.friends.include?(@user) %>
+      <%= @user.username %> is your friend
+    <% else %>
+      <%= link_to "Add #{@user.username} as a friend",
+                  new_friend_path(:user_id => logged_in_user,
+                                  :friend_id=>@user) %>
+    <% end %>
+    <br />
+  <% end %>
+  <%= link_to "See all of #{@user.username}'s photos", 
+              user_photos_path(:user_id => @user) %>
+</p>
+
+<p>
+  <%= link_to "#{@user.username}'s Tags",
+        user_tags_path(:user_id => @user) %>
+</p>
+
+<% if @flickr_feed %>
+<h3>Flickr Photos</h3>
+<p>
+  <ul id="photos">
+    <% @flickr_feed.each do |item| %>
+    <% if !item.nil? %>
+      <li>
+        <%= image_tag(item) %>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+  <%= link_to "See more", "http://flickr.com/photos/#{@user.flickr_id}" %>
+</p>
+<% end %>

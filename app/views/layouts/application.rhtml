@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>RailsCoders</title>
+    <%= stylesheet_link_tag 'main' %>
+    <%= javascript_include_tag :defaults %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <%= image_tag 'logo.png', :alt => "RailsCoders" %>
+      </div>
+      <div id="sidemenu">
+        <%= render :partial => 'layouts/menu' %>
+      </div>
+      <div id="content">
+        <% if flash[:notice] -%>
+          <div id="notice"><%= flash[:notice] %></div>
+        <% end -%>
+        <% if flash[:error] -%>
+          <div id="error"><%= flash[:error] %></div>
+        <% end -%>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<h2><%= @topic.name -%></h2>
+
+<h3>
+  <%= link_to 'Forums', forums_path -%> >
+  <%= link_to @topic.forum.name, forum_path(@topic.forum) -%> >
+  <%= @topic.name -%>
+</h3>
+
+<p>
+<% if is_logged_in? -%>
+  <%= link_to 'Post Reply', new_post_path(:forum_id => @topic.forum, 
+                                          :topic_id => @topic) -%>
+<% else -%>
+  <%= link_to 'Login to post a new topic', :controller => 'account', :action => 'login' -%>
+<% end -%>
+</p>
+
+<% if @posts_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @posts_pages, :params => params %>
+  </strong></p>
+<% end %>
+
+<table id="posts">
+  <tr>
+    <th class="author">Author</th>
+    <th class="post">Message</th>
+  </tr>
+  <% @posts.each do |post| -%>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td class="author">
+        <%= link_to  post.user.username, user_path(post.user) -%><br />
+        <small>
+          Member since <%= post.user.created_at.to_s(:short) %><br />
+          <%= pluralize(post.user.posts_count, 'post') -%>
+        </small>
+        <% if is_logged_in? and logged_in_user.has_role?('Moderator') -%>
+          <br />
+          <small>
+            <%= link_to 'Edit', edit_post_path(:id => post, 
+                  :topic_id => @topic, :forum_id => @topic.forum) -%>
+          <br />
+            <%= link_to 'Delete', post_path(:id => post, :topic_id => @topic, 
+                  :forum_id => @topic.forum), :method => :delete, 
+                  :confirm => 'Are you sure you wish to delete this post?' -%>
+          </small>
+        <% end -%>
+        <% if is_logged_in? and post.user == logged_in_user %>
+          <br />
+          <small>
+            <%= link_to 'Edit this post', edit_post_path(:id => post, :topic_id => @topic, :forum_id => @topic.forum) %>
+          </small>
+        <% end %>
+      </td>
+      <td class="post"><%= textilize(post.body) -%></td>
+    </tr>
+  <% end -%>
+</table>
+
+<% if @posts_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @posts_pages, :params => params %>
+  </strong></p>
+<% end %>

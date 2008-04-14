@@ -1,0 +1,26 @@
+valid_user:
+  id: 1
+  username: joe
+  email: joe@example.com
+  hashed_password: 5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5
+    # clear password = 12345
+  profile: Just a regular Joe
+  created_at: <%= 1.days.ago.to_s(:db) %>
+admin_user:
+  id: 2
+  username: admin
+  email: admin@example.com
+  hashed_password: 5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5 # pw = 12345
+  created_at: <%= 1.days.ago.to_s(:db) %>
+editor_user:
+  id: 3
+  username: editor
+  email: editor@example.com
+  hashed_password: 5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5 # pw = 12345
+  created_at: <%= 1.days.ago.to_s(:db) %>
+moderator_user:
+  id: 4
+  username: moderator
+  email: moderator@example.com
+  hashed_password: 5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5 
+  created_at: <%= 1.days.ago.to_s(:db) %>

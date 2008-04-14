@@ -1,0 +1,51 @@
+<h2>Forum : <%= @forum.name -%></h2>
+
+<h3>Topics</h3>
+
+<p>
+<% if is_logged_in? -%>
+  <%= link_to 'Post New Topic', new_topic_path(:forum_id => @forum) -%>
+<% else -%>
+  <%= link_to 'Login to post a new topic', :controller => 'account', :action => 'login'  -%>
+<% end -%>
+</p>
+
+<% if @topics_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @topics_pages, :params => params %>
+  </strong></p>
+<% end %>
+
+<table id="topics">
+  <tr>
+    <th class="name">Topics</th>
+    <th class="reply">Posts</th>
+    <th class="author">Author</th>
+  </tr>
+  <% @topics.each do |topic| -%>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td class="name">
+        <%= link_to topic.name, posts_path(:forum_id => @forum, 
+                                           :topic_id => topic) -%>
+      <% if is_logged_in? and logged_in_user.has_role?('moderator') -%>
+        <br />
+        <small>
+          <%= link_to 'delete', topic_path(:forum_id => @forum,       :id => topic),    
+                :method => :delete, 
+                :confirm => 'Are you sure? This will delete this entire topic.' -%>
+          <%= link_to 'edit', edit_topic_path(:forum_id => @forum, :id => topic) -%>
+        </small>
+      <% end -%>
+      </td>
+      <td class="reply"><%= topic.posts_count %></td>
+      <td class="author"><%= link_to topic.user.username, 
+                               user_path(:id => topic.user) %></td>
+    </tr>
+  <% end -%>
+</table>
+
+<% if @topics_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @topics_pages, :params => params %>
+  </strong></p>
+<% end %>

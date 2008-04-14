@@ -1,0 +1,147 @@
+body { 
+  margin: 0;	
+  padding: 0;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+  background: #fff url(/images/h-grad.png) repeat-x;
+  height: 60px;
+  margin-top: 10px;
+  text-align: left;
+  padding-top: 1px;
+}
+
+#container {
+  width: 760px;
+  min-width: 760px;	
+  margin: 0 auto;
+  padding: 0px;
+}
+
+#sidemenu {
+  font-size: 80%;
+  float: left;
+  width: 100px;
+  padding: 0;
+}
+
+#sidemenu ul {
+  list-style: none; 
+  margin-left: 0px;
+  padding: 0;
+}
+
+a { color: #b00; }
+a:hover { background-color: #b00; color: #eee; }
+
+#content { float: right; width: 650px; }
+
+th { background-color: #933; color: #fff; }
+tr.odd { background-color: #fcc; }
+tr.even { background-color: #ecc; }
+
+/* User table styling */
+table#users { width: 100%;}
+table#users th { font-size: 95%; }
+table#users td { font-size: 90%; }
+
+/* Forum styling */
+table#forums { width: 100%; background-color: #fff; border: 1px solid #c33; }
+table#forums td.name  { width: 60% }
+table#forums td.topic { width: 20%; text-align: center; }
+
+table#topics { width: 100%; background-color: #fff; border: 1px solid #000; }
+table#topics td.name   { width: 60% }
+table#topics td.reply  { width: 20%; text-align: center; }
+table#topics td.author { width: 20%; text-align: center; }
+
+table#posts { width: 100%; background-color: #fff; border: 1px solid #000; }
+table#posts td.author { width: 20%; vertical-align: top; }
+table#posts td.body   { width: 80% }
+
+.forumname { font-size: 1.1em; }
+.forumdescription { font-size: 0.7em; padding-top: 0.4em; }
+
+/* Photo gallery styling */
+#photos ul { list-style: none; }
+#photos li { display: inline; }
+
+#photos li a img {
+  margin: 10px;
+  padding: 5px;
+  background: #000;
+}
+
+#photo {
+  margin-bottom: 20px;
+  padding: 5px;
+  background: #000;	
+}
+
+/* XFN Styling */
+a.xfnRelationship {
+	padding-right: 26px;
+	background: url(/images/xfn-small.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="colleague"],
+a.xfnRelationship[rel~="co-worker"] {
+	padding-right: 21px;
+	background: url(/images/xfn-colleague.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="colleague"][rel~="met"],
+a.xfnRelationship[rel~="co-worker"][rel~="met"] {
+	padding-right: 26px;
+	background: url(/images/xfn-colleague-met.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="friend"] {
+	padding-right: 21px;
+	background: url(/images/xfn-friend.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="friend"][rel~="met"] {
+	padding-right: 26px;
+	background: url(/images/xfn-friend-met.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="sweetheart"] {
+	padding-right: 21px;
+	background: url(/images/xfn-sweetheart.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="sweetheart"][rel~="met"] {
+	padding-right: 26px;
+	background: url(/images/xfn-sweetheart-met.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="child"] {
+	padding-right: 21px;
+	background: url(/images/xfn-child.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="parent"] {
+	padding-right: 21px;
+	background: url(/images/xfn-parent.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="spouse"] {
+	padding-right: 21px;
+	background: url(/images/xfn-spouse.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="me"] {
+	padding-right: 21px;
+	background: url(/images/xfn-me.png) no-repeat right;
+}
+
+/* Tag cloud styling */
+.tag1 { font-size: 100%; }
+.tag2 { font-size: 120%; }
+.tag3 { font-size: 140%; }
+.tag4 { font-size: 160%; }
+.tag5 { font-size: 170%; }
+.tag6 { font-size: 180%; }

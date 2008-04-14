@@ -1,0 +1,3 @@
+page.insert_html :bottom, 'taglist', { :partial => 'edit_tag',
+                                       :locals => {:edit_tag => @new_tag} }
+page.visual_effect :highlight, "tag-#{@new_tag.id}", :duration => 2

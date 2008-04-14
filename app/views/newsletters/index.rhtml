@@ -1,0 +1,27 @@
+<h1>Listing newsletters</h1>
+
+<%= link_to 'Create new newsletter', new_newsletter_path %>
+
+<table>
+  <tr>
+    <th>Subject</th>
+    <th>Sent</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+  </tr>
+  
+<% for newsletter in @newsletters %>
+  <tr>
+    <td><%=h newsletter.subject %></td>
+    <td><%= yes_no(newsletter.sent) %></td>
+    <td><%=h newsletter.created_at %></td>
+    <td><%=h newsletter.updated_at %></td>
+    <% if !newsletter.sent %>
+      <td><%= link_to 'Show', newsletter_path(newsletter) %></td>
+      <td><%= link_to 'Edit', edit_newsletter_path(newsletter) %></td>
+      <td><%= link_to 'Destroy', newsletter_path(newsletter), 
+                :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

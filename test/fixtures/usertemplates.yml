@@ -1,0 +1,15 @@
+valid_blog_index_for_joe:
+  id: 1
+  user_id: 1
+  name: blog_index
+  body: a template
+valid_blog_entry_for_joe:
+  id: 2
+  user_id: 1
+  name: blog_entry
+  body: a template
+valid_blog_index_for_admin:
+  id: 3
+  user_id: 2
+  name: blog_index
+  body: my template

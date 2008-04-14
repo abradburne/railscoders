@@ -1,0 +1,29 @@
+<% content_for :head do %>
+  <%= auto_discovery_link_tag %>
+<% end %>
+
+<h2>News Articles</h2>
+
+<% if @articles_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @articles_pages, :params => params %>
+  </strong></p>
+<% end %>
+
+<% @articles.each do |article| %>
+  <div class="article">
+    <h3><%= article.title %></h3>
+    <% if article.category %>
+      <p class="category">
+        Category: '<%= link_to article.category.name, 
+                         category_articles_path(article.category) %>'
+      </p>
+    <% end %>
+
+    <p>
+      <%= article.created_at.to_s(:short) %> by <%= article.user.username %><br />
+      <%= article.synopsis %><br />
+      <%= link_to 'Read the full article', article_url(article) %>
+    </p>
+  </div>
+<% end %>

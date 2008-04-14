@@ -1,0 +1,38 @@
+<ul>
+  <li><%= link_to 'Home', index_url %></li>
+  <li><%= link_to 'News', articles_path %></li>
+  <li><%= link_to 'Forums', forums_path %></li>
+  <li><%= link_to 'Blogs', blogs_path %></li>
+  <li><%= link_to 'Photos', photos_path %></li>
+  <li><%= link_to 'Photo Tags', tags_path %></li>
+  <li><hr size="1" width="90%" align="left"/></li>
+
+  <% if is_logged_in? %>
+    <li>Logged in as: <i><%= logged_in_user.username %></i></li>
+    <li><%= link_to 'My Profile', edit_user_path(logged_in_user) %></li>
+    <li><%= link_to 'My Friends', friends_path(:user_id => logged_in_user) %></li>
+    <li><%= link_to 'My Photos', user_photos_path(:user_id => logged_in_user) -%></li>    
+    <li><%= link_to 'New Blog Post', new_entry_path(:user_id => logged_in_user) -%></li>
+    <li><%= link_to 'Blog Templates', usertemplates_path -%></li>
+    <li><%= link_to 'Upload Photo', user_new_photo_path(:user_id => logged_in_user) -%></li>
+    <li><%= link_to 'Logout', {:controller => 'account', :action => 'logout'}, :method => :post %></li>
+  <% else %>
+    <li><%= link_to 'Signup', :controller => 'users', :action => 'new' %></li>
+    <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>        	
+
+  <% if logged_in_user and logged_in_user.has_role?('administrator') %>
+    <li><hr size="1" width="90%" align="left"/></li>	
+    <li><b>Admin Options</b></li>
+    <li><%= link_to 'Administer Users', users_path %></li>
+    <li><%= link_to 'Edit Pages', pages_path %></li>
+    <li><%= link_to 'Newsletters', newsletters_path %></li>
+  <% end %>
+  
+  <% if is_logged_in? && logged_in_user.has_role?('editor') %>
+    <li><hr size="1" width="90%" align="left"/></li>	
+    <li><b>Editor Options</b></li>
+    <li><%= link_to 'News Articles', admin_articles_path %></li>
+    <li><%= link_to 'News Categories', admin_categories_path %></li>
+  <% end %>
+</ul>

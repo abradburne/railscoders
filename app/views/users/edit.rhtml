@@ -1,0 +1,16 @@
+<h2>Edit your account</h2>
+
+<%= error_messages_for :user %>
+
+<% form_for :user, 
+            :url => user_url(@user), 
+            :html => { :method => :put } do |f| -%>
+  <p>Email:<br /><%= f.text_field :email, :size => 60 %></p>
+  <p>Flickr Username:<br /><%= f.text_field :flickr_username, :size => 60 %><p>
+  <p>Password:<br /><%= f.password_field :password, :size => 60 %></p>
+  <p>Password Confirmation:<br />
+    <%= f.password_field :password_confirmation, :size => 60 %></p>
+  <p>Blog Title:<br /><%= f.text_field :blog_title, :size => 60 %></p>
+  <p>Profile:<br /><%= f.text_area :profile, :rows => 6, :cols => 60 %></p>
+  <%= submit_tag 'Save' %>
+<% end -%>

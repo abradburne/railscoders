@@ -1,0 +1,31 @@
+<h2>Newsletter</h2>
+
+<p>
+  <b>Subject:</b> <%=h @newsletter.subject %>
+</p>
+
+<p>
+  <b>Created at:</b> <%=h @newsletter.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b> <%=h @newsletter.updated_at %>
+</p>
+
+<p>
+  <b>Sent:</b> <%= yes_no(@newsletter.sent) %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <br />
+  <%=h @newsletter.body %>
+</p>
+
+<% if !@newsletter.sent %>
+  <%= link_to 'Edit', edit_newsletter_path(@newsletter) %> | 
+  <%= link_to 'Send', sendmails_newsletter_path(@newsletter), 
+        :method => :put, 
+        :confirm => 'Are you sure you wish to send this newsletter?' %> | 
+<% end %>
+<%= link_to 'Back', newsletters_path %>

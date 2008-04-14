@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+parent_photo:
+ id: 1
+ user_id: 1
+ title: a test photo
+ body: just a test
+ content_type: image/jpeg
+ filename: testimage.jpg
+ size: 1000
+ width: 640
+ height: 480
+ created_at: <%= 1.days.ago.to_s(:db) %>
+thumb_photo:
+ id: 2
+ parent_id: 1
+ width: 160
+ height: 120
+ filename: testimage_thumb.jpg
+ thumbnail: thumb
+ created_at: <%= 1.days.ago.to_s(:db) %>
+tiny_photo:
+ id: 3
+ parent_id: 1
+ width: 80
+ height: 80
+ filename: testimage_tiny.jpg
+ thumbnail: tiny
+ created_at: <%= 1.days.ago.to_s(:db) %>

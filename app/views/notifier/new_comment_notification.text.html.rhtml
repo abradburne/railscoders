@@ -1,0 +1,13 @@
+<%= image_tag "http://railscoders.net/images/logo.png", :alt => "RailsCoders" %>
+
+<p>Hi <%= @blog_owner.username %>,</p>
+
+<p>A new comment has been left on your blog at RailsCoders.</p>
+
+<p>The comment was left by <%= link_to @comment.user.username, @blog_owner_url %> on <%= @comment.created_at.to_s(:short) %></p>
+
+
+
+<p>To read the comment, go to <%= link_to @blog_entry_url, @blog_entry_url %></p>
+<p>Cheers,<br />
+<a href="http://railscoders.net">The RailsCoders Team</a></p>

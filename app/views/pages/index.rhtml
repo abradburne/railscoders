@@ -1,0 +1,13 @@
+<h2>All Pages</h2>
+<p><%= link_to 'Create new page', new_page_url %></p>
+<ul>
+  <% @pages.each do |page| %>
+  <li>
+    <%= link_to page.permalink, page_path(page) %> 
+      [<%= link_to 'edit', edit_page_path(page) %>] 
+      | <%= link_to 'delete', page_url(page), :method => :delete, 
+          :confirm => 'Are you sure you wish to delete this page?' %> ]
+      : <%= page.title %>
+    </li>
+  <% end %>
+</ul>

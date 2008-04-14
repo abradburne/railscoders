@@ -1,0 +1,14 @@
+<ul>
+  <li>0&nbsp;<%= link_to 'Home', mobile_index_url, :accesskey => '0' %></li>
+  <li>1&nbsp;<%= link_to 'News', mobile_articles_path, :accesskey => '1' %></li>
+  <li>2&nbsp;<%= link_to 'Forums', mobile_forums_path, :accesskey => '2' %></li>
+  <li>3&nbsp;<%= link_to 'Blogs', mobile_blogs_path, :accesskey => '3' %></li>
+  <li>4&nbsp;<%= link_to 'Photos', mobile_photos_path, :accesskey => '4' %></li>
+
+  <% if is_logged_in? %>
+    <li><%= link_to 'Logout', mobile_logout_path %></li>
+  <% else %>
+    <li><%= link_to 'Login', mobile_login_path %></li>
+  <% end %>
+
+</ul>

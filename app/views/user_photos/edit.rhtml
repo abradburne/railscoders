@@ -1,0 +1,40 @@
+<% content_for :head do %>
+  <%= GMap.header %>
+<% end %>
+
+<h2>Edit photo details</h2>
+
+<%= link_to image_tag(@photo.public_filename('thumb')), 
+            user_photo_path(:user_id => @photo.user, :id => @photo) %>
+
+<%= error_messages_for :photo %>
+
+<h3>Tags</h3>
+<ul id="taglist">
+  <%= render :partial => 'edit_tag', :collection => @photo.tags %>
+</ul>
+
+<% remote_form_for(:tag,
+                   :url => user_add_tag_photo_path(:id => @photo),
+                   :method => :put,
+                   :complete => "Field.clear('tag-name')") do |f| %>
+  <%= f.text_field :name, :id => 'tag-name' %>
+  <%= submit_tag 'Add Tag' %>
+<% end %>
+
+<% form_for(:photo, 
+            :url => user_photo_path(:user_id => @photo.user, :id => @photo), 
+            :html => { :method => :put }) do |f| %>
+  <p>Title:<br /><%= f.text_field 'title' %></p>
+  <p>Description:<br /><%= f.text_area 'body', :rows => 6, :cols => 40 %></p>
+  <p>Latitude: <%= f.text_field 'geo_lat', :size => '8' %></p>
+  <p>Longitude: <%= f.text_field 'geo_long', :size => '8' %></p>
+  <p>Display Location Data? <%= f.check_box 'show_geo' %></p>
+  
+  <div id="gmap">
+    <%= @map.to_html %>
+    <%= @map.div(:width => 650, :height => 300) %>
+  </div>
+  
+  <p><%= submit_tag "Save" %> or <%= link_to 'cancel', user_photos_path %></p>
+<% end %>

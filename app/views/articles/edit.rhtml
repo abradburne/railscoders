@@ -1,0 +1,13 @@
+<h2>Edit Article</h2>
+<% form_for :article, 
+            :url => article_url(@article), 
+            :html => { :method => :put } do |f| -%>
+  <p>Title:<br /><%= f.text_field :title, :size => 60 %></p>
+  <p>Synopsis:<br /><%= f.text_area :synopsis, :rows => 4, :cols => 60 %></p>
+  <p>Body:<br /><%= f.text_area :body, :rows => 20, :cols => 60 %></p>
+  <p>Category:<br />
+    <%= f.collection_select :category_id, 
+          Category.find(:all), :id, :name, :include_blank => true %></p>
+  <p>Published? <%= f.check_box :published %></p>
+  <%= submit_tag 'Save' %> or <%= link_to 'cancel', articles_url %>
+<% end -%>

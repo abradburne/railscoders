@@ -1,0 +1,41 @@
+<% content_for :head do %>
+  <%= GMap.header %>
+<% end %>
+
+<h3>
+  <%= link_to "#{@photo.user.username}'s Photos", 
+              user_photos_path(:user_id => @photo.user) %>
+</h3>
+<h2><%=h @photo.title %></h2>
+<p><%=h @photo.body %>
+  
+<p>Tags:
+  <% @photo.tags.each do |tag| %>
+    <%= link_to tag.name, user_tag_path(@photo.user, tag.name)%>
+  <% end %>
+</p>
+
+<% if is_logged_in? && @photo.user_id == logged_in_user.id %>
+  <p>
+    <%= link_to 'Edit', user_edit_photo_path(:user_id=>@photo.user, :id=>@photo) %>, 
+    <%= link_to 'Delete', user_photo_path(:user_id => @photo.user, :id => @photo), 
+                                          :confirm => 'Are you sure?', 
+                                          :method => :delete %>
+  </p>
+<% end %>
+
+<% if @map %>
+  <div id="gmap">
+    <%= link_to_function 'Hide Map',
+          "Element.hide('gmap'); Element.show('showmaplink')" %>
+    <%= @map.to_html %>
+    <%= @map.div(:width => 650, :height => 200) %>
+    <br />
+  </div>
+  <%= link_to_function 'Show Map',
+        "Element.show('gmap'); Element.hide('showmaplink')",
+        :id => 'showmaplink',
+        :style => 'display:none' %>
+<% end %>
+
+<%= image_tag @photo.public_filename, :id => 'photo' %>

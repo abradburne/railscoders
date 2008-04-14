@@ -1,0 +1,6 @@
+site_news:
+  id: 1
+  name: Site News
+gossip:
+  id: 2
+  name: Rails News

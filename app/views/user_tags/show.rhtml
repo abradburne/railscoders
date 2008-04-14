@@ -1,0 +1,9 @@
+<h2><%= @user.username %>'s Photos Tagged: <%=h params[:id] %></h2>
+
+<p>
+  <%= link_to "Show all photos tagged with #{h params[:id]}", tag_path(h(params[:id])) %>
+</p>
+
+<ul id="photos">
+  <%= render :partial => 'photos/photo', :collection => @photos %>
+</ul>

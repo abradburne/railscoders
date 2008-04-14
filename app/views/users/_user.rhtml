@@ -1,0 +1,14 @@
+<tr class="<%= cycle('odd', 'even') -%>">
+  <td><%= user.username -%></td>
+  <td><%= user.email -%></td>
+  <td><%= user.enabled ? 'yes' : 'no' -%>
+  <% unless user == logged_in_user -%>	
+    <% if user.enabled -%>
+      [<%= link_to('disable', user_url(user.id), :method => :delete) %>]
+    <% else -%>
+      [<%= link_to('enable', enable_user_url(user.id), :method => :put) %>]
+    <% end -%>
+  <% end -%>
+  </td>
+  <td>[<%= link_to 'edit permissions', roles_url(user) %>]</td>
+</tr>

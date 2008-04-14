@@ -1,0 +1,35 @@
+<h2>Forums</h2>
+
+<% if is_logged_in? and logged_in_user.has_role?('Moderator') %>
+  <p><%= link_to 'Create New Forum', new_forum_path -%></p>
+<% end %>
+
+<table id="forums">
+  <tr>
+    <th class="name">Forum name</th>
+    <th class="topic">Topics</th>
+  </tr>
+  <% @forums.each do |forum| -%>
+  <tr class="<%= cycle('odd', 'even') %>">
+    <td class="name">
+      <div class="forumname">
+        <%= link_to forum.name, topics_path(:forum_id => forum) -%>
+      </div>      
+
+      <div class="forumdescription">
+        <%= forum.description -%>
+      </div>
+
+      <% if is_logged_in? and logged_in_user.has_role?('Moderator') -%>
+        <br />
+        <small>
+          <%= link_to 'edit', edit_forum_path(forum) %>
+          <%= link_to 'delete', forum_path(forum), :method => :delete, 
+                :confirm => 'Are you sure? This will delete this entire forum.' -%>
+        </small>        
+      <% end -%>
+    </td>
+    <td class="topic"><%= forum.topics_count %></td>
+  </tr>
+  <% end -%>
+</table>

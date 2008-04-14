@@ -1,0 +1,10 @@
+Hi <%= @blog_owner.username %>,
+
+A new comment has been left on your blog at RailsCoders.net.
+
+The comment was left by '<%= @comment.user.username %>' at <%= @comment.created_at.to_s(:short) %>.
+
+To read the comment, go to <%= @blog_entry_url %>.
+
+Cheers,
+The RailsCoders Team

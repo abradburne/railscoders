@@ -1,0 +1,5 @@
+<h2>Photos Tagged: <%=h params[:id] %></h2>
+
+<ul id="photos">
+  <%= render :partial => 'photos/photo', :collection => @photos %>
+</ul>

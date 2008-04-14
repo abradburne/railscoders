@@ -1,0 +1,14 @@
+<h2>Edit Categories</h2>
+
+<p><%= link_to 'Create New Category', new_category_path %></p>
+
+<ul>
+<% @categories.each do |category| %>
+  <li>
+    <%= link_to category.name, category_articles_url(:category_id => category) %>
+    [<%= link_to 'Edit', edit_category_path(category) %>]
+    [<%= link_to 'Delete', category_path(category), :method => :delete, 
+                 :confirm => 'Are you sure you wish to delete this category?' %>]    
+  </li>
+<% end %>
+</ul>

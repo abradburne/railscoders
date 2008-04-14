@@ -1,0 +1,3 @@
+<h2><%= link_to "#{@user.username}'s blog", mobile_entries_path(:user_id => @user.id) %></h2>
+<h3><%=h @entry.title %></h3>
+<p><%= textilize @entry.body %></p>

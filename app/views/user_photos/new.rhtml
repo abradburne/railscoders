@@ -1,0 +1,29 @@
+<% content_for :head do %>
+  <%= GMap.header %>
+<% end %>
+
+<h2>Upload a new photo</h2>
+
+<%= error_messages_for :photo %>
+
+<% form_for(:photo, 
+            :url => user_photos_path(:user_id => @logged_in_user), 
+            :html => { :multipart => true }) do |f| %>
+  <p>Select a photo to upload</p>
+  <p>Title:<br /><%= f.text_field 'title' %></p>
+  <p>Description:<br /><%= f.text_area 'body', :rows => 6, :cols => 40 %></p>
+  <p>Latitude: <%= f.text_field 'geo_lat', :size => '8' %></p>
+  <p>Longitude: <%= f.text_field 'geo_long', :size => '8' %></p>
+  <p>Display Location Data? <%= f.check_box 'show_geo' %></p>
+  <p>Photo:<br /><%= f.file_field 'uploaded_data' %></p>
+  
+  <div id="gmap">
+    <%= @map.to_html %>
+    <%= @map.div(:width => 650, :height => 300) %>
+  </div>
+  
+  <p>
+    <%= submit_tag 'Upload Photo' %> or 
+    <%= link_to 'cancel', user_photos_path(@logged_in_user) %>
+  </p>
+<% end %>
