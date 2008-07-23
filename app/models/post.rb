@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   validates_length_of :body, :maximum => 10000
 
   def after_save
+    self.user.reload
     self.user.update_attribute(:last_activity, "Posted in the forum")
     self.user.update_attribute(:last_activity_at, Time.now)
   end
